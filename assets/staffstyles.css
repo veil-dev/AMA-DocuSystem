@@ -1,0 +1,627 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html,
+        body {
+            min-height: 100%;
+            height: auto;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: #f4f7fc;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 🟤 MAROON THEME VARIABLES */
+        :root {
+            --maroon-deep: #800000;      /* primary maroon (header) */
+            --maroon-rich: #6b2d2d;       /* darker for text emphasis */
+            --maroon-muted: #a05252;       /* softer for secondary text */
+            --maroon-bg-light: #fdf1f1;     /* light background tint */
+            --maroon-border: #dbb8b8;       /* subtle border */
+        }
+
+        .dashboard {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            background: white;
+            min-height: 100vh;
+            height: auto;
+            max-height: none;
+            overflow: visible;
+        }
+
+        /* ----- HEADER (already maroon, we refine) ----- */
+        .header {
+            background: var(--maroon-deep);
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            flex-shrink: 0;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            font-weight: 500;
+        }
+
+        .header h1 i {
+            margin-right: 10px;
+            color: #ffd6a0;  /* warm accent */
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .user-info span {
+            font-size: 1.1rem;
+        }
+
+        /* badge with maroon outline */
+        .user-info .badge {
+            background: white;
+            color: var(--maroon-deep);
+            border: 2px solid var(--maroon-deep);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1px solid white;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 0.9rem;
+            white-space: nowrap;
+        }
+
+        .logout-btn:hover {
+            background: white;
+            color: var(--maroon-deep);
+        }
+
+        /* ----- MAIN LAYOUT ----- */
+        .main-content {
+            display: flex;
+            flex: 1;
+            overflow: auto; /* keep table accessible on mobile */
+            flex-wrap: wrap;
+            min-height: 0;
+        }
+
+        /* ----- SIDEBAR (maroon text accents) ----- */
+        .sidebar {
+            background: #fefafa;        /* very light maroon tint */
+            width: 280px;
+            padding: 30px 20px;
+            border-right: 1px solid var(--maroon-border);
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        .staff-profile {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .staff-avatar {
+            width: 100px;
+            height: 100px;
+            background: var(--maroon-deep);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 15px;
+            box-shadow: 0 4px 10px rgba(128,0,0,0.2);
+        }
+
+        .staff-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--maroon-rich);       /* maroon text */
+        }
+
+        .staff-role {
+            color: var(--maroon-muted);
+            margin: 5px 0 15px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 2px 12px rgba(128,0,0,0.05);
+            margin-bottom: 25px;
+            border: 1px solid var(--maroon-border);
+        }
+
+        .info-card h3 {
+            font-size: 1rem;
+            color: var(--maroon-deep);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-card h3 i {
+            color: var(--maroon-muted);
+        }
+
+        .info-card p {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--maroon-rich);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-number {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--maroon-deep);
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #4d3a3a;   /* warm gray */
+        }
+
+        .filter-section {
+            margin-top: 20px;
+        }
+
+        .filter-section h4 {
+            font-size: 0.9rem;
+            color: var(--maroon-rich);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .filter-section h4 i {
+            color: var(--maroon-muted);
+        }
+
+        .filter-option {
+            margin-bottom: 8px;
+        }
+
+        .filter-option label {
+            margin-left: 8px;
+            color: #2c3e50;   /* keep neutral for readability */
+            font-size: 0.9rem;
+        }
+
+        /* ----- MAIN PANEL (maroon headings, search) ----- */
+        .panel {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+            height: 100%;
+            min-width: 300px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .panel-header h2 {
+            font-size: 1.5rem;
+            color: var(--maroon-rich);
+        }
+
+        .toggle-table-btn {
+            background: var(--maroon-deep);
+            border: 1px solid var(--maroon-border);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            display: none;
+        }
+
+        .toggle-table-btn.active {
+            background: var(--maroon-rich);
+        }
+
+        @media (max-width: 800px) {
+            .toggle-table-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+            }
+        }
+
+        .mobile-table-fallback {
+            display: none;
+        }
+
+        .panel-header h2 i {
+            color: var(--maroon-deep);
+            margin-right: 6px;
+        }
+
+        /* search bar with maroon borders */
+        .search-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+            align-items: center;
+        }
+
+        .search-box {
+            flex: 2;
+            min-width: 250px;
+            display: flex;
+            align-items: center;
+            background: white;
+            border: 1px solid var(--maroon-border);
+            border-radius: 50px;
+            padding: 0 15px;
+        }
+
+        .search-box i {
+            color: var(--maroon-muted);
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 15px;
+            border: none;
+            background: transparent;
+            outline: none;
+            font-size: 0.95rem;
+            color: #2c3e50;
+        }
+
+        .filter-dropdown {
+            flex: 1;
+            min-width: 150px;
+            padding: 12px 15px;
+            border: 1px solid var(--maroon-border);
+            border-radius: 50px;
+            outline: none;
+            background: white;
+            color: var(--maroon-rich);
+            font-weight: 500;
+        }
+
+        .search-btn {
+            background: var(--maroon-deep);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            white-space: nowrap;
+        }
+
+        .search-btn:hover {
+            background: var(--maroon-rich);
+        }
+
+        /* ----- DOCUMENT MATRIX TABLE (maroon accents) ----- */
+        .matrix-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 15px;
+            overflow: auto;
+            box-shadow: 0 2px 15px rgba(128,0,0,0.05);
+        }
+
+        .matrix-table th {
+            text-align: left;
+            padding: 16px 12px;
+            background: #fae6e6;       /* light maroon */
+            color: var(--maroon-rich);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            border-bottom: 2px solid var(--maroon-border);
+        }
+
+        .matrix-table td {
+            padding: 16px 12px;
+            border-bottom: 1px solid #f0d6d6;
+            color: #2c3e50;
+            vertical-align: top;
+        }
+
+        .matrix-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .student-cell {
+            min-width: 180px;
+        }
+
+        .student-name {
+            font-weight: 600;
+            color: var(--maroon-rich);   /* maroon student names */
+        }
+
+        .student-usn {
+            font-size: 0.8rem;
+            color: var(--maroon-muted);
+        }
+
+        .doc-status {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            text-align: center;
+            min-width: 70px;
+            align-self: flex-start;
+        }
+
+        /* keep functional colors for statuses, but 'submitted' gets maroon tint */
+        .status-submitted {
+            background: #fceaea;
+            color: #5c2e2e;      /* dark maroon text */
+        }
+
+        .status-verified {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-rejected {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .status-missing {
+            background: #e9ecef;
+            color: #495057;
+        }
+
+        .doc-actions {
+            display: flex;
+            gap: 3px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .doc-view-link {
+            color: var(--maroon-deep);
+            text-decoration: none;
+            font-size: 0.65rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            background: #f2e6e6;
+            padding: 3px 6px;
+            border-radius: 30px;
+            white-space: nowrap;
+            max-width: 55px;
+            border: 1px solid var(--maroon-border);
+        }
+
+        .doc-view-link:hover {
+            background: #e6d1d1;
+            color: var(--maroon-rich);
+        }
+
+        .upload-btn {
+            background: #f2e6e6;
+            border: 1px solid var(--maroon-border);
+            color: var(--maroon-rich);
+            padding: 3px 6px;
+            border-radius: 30px;
+            font-size: 0.65rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            transition: 0.2s;
+            white-space: nowrap;
+            max-width: 65px;
+        }
+
+        .upload-btn:hover {
+            background: #e6d1d1;
+        }
+
+        @media (max-width: 600px) {
+            .upload-btn span, .doc-view-link span {
+                display: none;
+            }
+            .upload-btn i, .doc-view-link i {
+                margin-right: 0;
+            }
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            background: none;
+            border: 1px solid var(--maroon-border);
+            padding: 5px 8px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: 0.2s;
+            color: var(--maroon-rich);
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .action-btn:hover {
+            background: #f2e6e6;
+            border-color: var(--maroon-muted);
+        }
+
+        /* responsive */
+        @media (max-width: 1000px) {
+            .matrix-table {
+                display: table;
+                width: 100%;
+                overflow-x: auto;
+                min-width: 0;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .main-content {
+                flex-direction: column;
+                overflow-y: auto;
+                min-height: 0;
+            }
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--maroon-border);
+                overflow-y: visible;
+                height: auto;
+                max-height: none;
+            }
+            .panel {
+                overflow-y: visible;
+                height: auto;
+                min-height: 0;
+                max-height: none;
+            }
+            .matrix-table {
+                display: table !important;
+                width: 100% !important;
+                overflow-x: auto;
+                min-width: 100% !important;
+                border-collapse: collapse;
+            }
+            .matrix-table th, .matrix-table td {
+                display: table-cell !important;
+                white-space: normal !important;
+            }
+            .mobile-table-fallback {
+                display: none !important;
+                margin-top: 10px;
+            }
+            .show-cards .matrix-table {
+                display: none !important;
+            }
+            .show-cards .mobile-table-fallback {
+                display: block !important;
+            }
+            .mobile-card {
+                border: 1px solid var(--maroon-border);
+                border-radius: 12px;
+                padding: 10px;
+                margin: 8px 0;
+                background: #fff;
+            }
+            .mobile-card-row {
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 1px solid #eee;
+                padding: 6px 0;
+                font-size: 0.9rem;
+            }
+            .mobile-card-row:last-child {
+                border-bottom: none;
+            }
+            .mobile-card-label {
+                color: var(--maroon-muted);
+                font-weight: 600;
+                margin-right: 8px;
+                flex: 1;
+                max-width: 40%;
+            }
+            .mobile-card-value {
+                flex: 1.4;
+                text-align: right;
+                color: #2c3e50;
+            }
+        }
+
+        .mobile-table-fallback {
+            display: none;
+        }
+        .delete-btn {
+    background: none;
+    border: none;
+    color: #c0392b;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.85rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.delete-btn:hover {
+    background: #fce4e4;
+    color: #a00;
+}
+
+.delete-btn i {
+    font-size: 0.9rem;
+}
+
+.hidden {
+    display: none !important;
+}
